@@ -1,0 +1,150 @@
+# ============================================================
+# TRANSFORMATION MATRIX FORMULAS
+# ============================================================
+
+# ------------------------------------------------------------
+# ROTATION
+# ------------------------------------------------------------
+
+# 2D Rotation:
+# R = [[ cosθ, -sinθ ],
+#      [ sinθ,  cosθ ]]
+
+# 3D Rotation about X-axis:
+# Rx = [[ 1,      0,       0      ],
+#       [ 0,   cosθ,   -sinθ ],
+#       [ 0,   sinθ,    cosθ ]]
+
+# 3D Rotation about Y-axis:
+# Ry = [[  cosθ,  0,  sinθ ],
+#       [   0,    1,    0   ],
+#       [ -sinθ,  0,  cosθ ]]
+
+# 3D Rotation about Z-axis:
+# Rz = [[ cosθ, -sinθ, 0 ],
+#       [ sinθ,  cosθ, 0 ],
+#       [   0,      0, 1 ]]
+
+# 3D Rotation about arbitrary unit axis n = (nx, ny, nz):
+# R = [[ nx^2(1-cosθ)+cosθ,      nxny(1-cosθ)-nz sinθ,   nxnz(1-cosθ)+ny sinθ ],
+#      [ nxny(1-cosθ)+nz sinθ,   ny^2(1-cosθ)+cosθ,      nynz(1-cosθ)-nx sinθ ],
+#      [ nxnz(1-cosθ)-ny sinθ,   nynz(1-cosθ)+nx sinθ,   nz^2(1-cosθ)+cosθ ]]
+
+# ------------------------------------------------------------
+# SCALE
+# ------------------------------------------------------------
+
+# 2D Scaling:
+# S = [[ kx, 0  ],
+#      [ 0,  ky ]]
+
+# 2D Scaling along unit direction n = (nx, ny):
+# S = [[ 1 + (k-1)nx^2,      (k-1)nxny ],
+#      [ (k-1)nxny,          1 + (k-1)ny^2 ]]
+
+# 3D Scaling:
+# S = [[ kx, 0,  0  ],
+#      [ 0,  ky, 0  ],
+#      [ 0,  0,  kz ]]
+
+# 3D Scaling along unit direction n = (nx, ny, nz):
+# S = [[ 1+(k-1)nx^2,     (k-1)nxny,     (k-1)nxnz ],
+#      [ (k-1)nxny,       1+(k-1)ny^2,   (k-1)nynz ],
+#      [ (k-1)nxnz,       (k-1)nynz,     1+(k-1)nz^2 ]]
+
+# ------------------------------------------------------------
+# ORTHOGRAPHIC PROJECTION
+# ------------------------------------------------------------
+
+# 2D Projection onto x-axis:
+# P = [[1, 0],
+#      [0, 0]]
+
+# 2D Projection onto y-axis:
+# P = [[0, 0],
+#      [0, 1]]
+
+# 2D Projection onto line with unit normal n = (nx, ny):
+# P = [[1 - nx^2,    -nxny],
+#      [ -nxny,     1 - ny^2]]
+
+# 3D Projection onto xy-plane:
+# P = [[1, 0, 0],
+#      [0, 1, 0],
+#      [0, 0, 0]]
+
+# 3D Projection onto xz-plane:
+# P = [[1, 0, 0],
+#      [0, 0, 0],
+#      [0, 0, 1]]
+
+# 3D Projection onto yz-plane:
+# P = [[0, 0, 0],
+#      [0, 1, 0],
+#      [0, 0, 1]]
+
+# 3D Projection onto plane with unit normal n = (nx, ny, nz):
+# P = [[1 - nx^2,    -nxny,      -nxnz],
+#      [ -nxny,     1 - ny^2,    -nynz],
+#      [ -nxnz,      -nynz,     1 - nz^2]]
+
+# ------------------------------------------------------------
+# REFLECTION (mirror about perpendicular unit vector)
+# ------------------------------------------------------------
+
+# 2D Reflection across x-axis:
+# F = [[1,  0],
+#      [0, -1]]
+
+# 2D Reflection across y-axis:
+# F = [[-1, 0],
+#      [ 0, 1]]
+
+# 2D Reflection about line with unit normal n = (nx, ny):
+# F = [[1 - 2nx^2,   -2nxny],
+#      [ -2nxny,    1 - 2ny^2]]
+
+# 3D Reflection about plane with unit normal n = (nx, ny, nz):
+# F = [[1 - 2nx^2,   -2nxny,    -2nxnz],
+#      [ -2nxny,    1 - 2ny^2,  -2nynz],
+#      [ -2nxnz,    -2nynz,    1 - 2nz^2]]
+
+# ------------------------------------------------------------
+# SHEAR (SKEW)
+# ------------------------------------------------------------
+
+# 2D Shear (x-direction):
+# K = [[1, k],
+#      [0, 1]]
+
+# 2D Shear (y-direction):
+# K = [[1, 0],
+#      [k, 1]]
+
+# 3D Shear (z depends on x and y):
+# K = [[1, 0, k1],
+#      [0, 1, k2],
+#      [0, 0, 1]]
+
+# K = [[1, k1, 0],
+#      [0, 1,  0],
+#      [0, k2, 1]]
+
+# K = [[1, 0,  0],
+#      [k1, 1, 0],
+#      [k2, 0, 1]]
+
+# ------------------------------------------------------------
+# TRANSLATION (AFFINE - using homogeneous coordinates)
+# ------------------------------------------------------------
+
+# 2D Translation:
+# T = [[1, 0, Δx],
+#      [0, 1, Δy],
+#      [0, 0,  1]]
+
+# 3D Translation:
+# T = [[1, 0, 0, Δx],
+#      [0, 1, 0, Δy],
+#      [0, 0, 1, Δz],
+#      [0, 0, 0,  1]]
