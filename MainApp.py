@@ -1,14 +1,15 @@
-from Determinite_Calc import DeterminiteCalc
-from Projection_Calc import ProjectionCalc
+import Calculator
 
 def run():
     choice = 1
     while (choice == 1 or choice == 2):
-        choice = int(input("\n\nWhat do you want to do?\n1. Use the Determinite Calculator?\n2. Use the Projection Calculator?\n3.Quit\n"))
+        choice = int(input("\n\nWhat do you want to do?\n1. Use the Determinite Calculator?\n2. Use the Projection Calculator?\n3. Use Transformation Calculator\n4.Quit\n"))
         if(choice == 1):
-            DeterminiteCalc.run()
+            Calculator.Determinites.run()
         elif(choice == 2):
-            ProjectionCalc.run()
+            Calculator.Projection.run()
+        elif(choice == 3):
+            Calculator.Transformation.run()
         else:
             print("Quitting")
 if __name__ == "__main__":
