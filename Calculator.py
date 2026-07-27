@@ -1,14 +1,11 @@
-import Determinite
-import Inverse
-import magnitude
-import angle
-import dot_product
-import projection
-import v_s
-import threeD_shortcut
+import Determinite, Inverse
+import magnitude, angle, dot_product, projection, v_s, threeD_shortcut
 import rotation, scale_matrix, skew, orthographic_projection, mutiply_matrix
+import eigenthings
+
 from plot_vectors import plot_matrix
 from Vector_to_ArrayMatrix import make_vector_into_ArrayMatrix, make_vector_into_ArrayMatrix_Square
+from math import cos, sin, radians
 
 
 class Determinites():
@@ -92,24 +89,24 @@ class Projection():
 
             projection.get_projection(VectorA, VectorB)
         elif(choice == 2):
-            MatrixSize = int(input("How many elements are in the vector?\n"))
+            MatrixSize = float(input("How many elements are in the vector?\n"))
             elements = 0
             Vector = []
             while(elements < MatrixSize):
-                Vector.append(int(input(f"\nElement {elements} for Vector:")))
+                Vector.append(float(input(f"\nElement {elements} for Vector:")))
                 elements += 1
             magnitude.get_magnitude(Vector)
         elif(choice == 3):
-            TotalElements = int(input("How many elements are in each vector?\n"))
+            TotalElements = float(input("How many elements are in each vector?\n"))
             elements = 0
             VectorA = []
             VectorB = []
             while(elements < TotalElements):
-                VectorA.append(int(input(f"\nElement {elements} for Vector A:")))
+                VectorA.append(float(input(f"\nElement {elements} for Vector A:")))
                 elements += 1
             elements = 0
             while(elements < TotalElements):
-                VectorB.append(int(input(f"\nElement {elements} for Vector B:")))
+                VectorB.append(float(input(f"\nElement {elements} for Vector B:")))
                 elements += 1
             dot_product.solve_dot_product_2_vectors(VectorA, VectorB)
         elif(choice == 4):
@@ -119,12 +116,12 @@ class Projection():
             VectorA = []
             VectorB = []
             while(currentElement < Elements):
-                VectorA.append(int(input(f"\nElement {currentElement} for Vector A:")))
+                VectorA.append(float(input(f"\nElement {currentElement} for Vector A:")))
                 currentElement += 1
             currentElement = 0
 
             while(currentElement < Elements):
-                VectorB.append(int(input(f"\nElement {currentElement} for Vector B:")))
+                VectorB.append(float(input(f"\nElement {currentElement} for Vector B:")))
                 currentElement += 1
 
             Magnitudes = []
@@ -430,12 +427,36 @@ class Transformation():
                 #& Input Matrix 1 elements
                 print("\nEnter Matrix 1 elements:")
                 for i in range(rows1 * cols1):
-                    Vector1.append(int(input(f"Element {i+1}: ")))
+                    element = (input(f"Element {i+1}: "))
+                    if (element == "cos"):
+                        Degree = int(input("What is the degree: "))
+                        number = cos(radians(Degree))
+                    elif(element == "sin"):
+                        Degree = int(input("What is the degree: "))
+                        number = sin(radians(Degree))
+                    elif(element == "-sin"):
+                        Degree = int(input("What is the degree: "))
+                        number = -sin(radians(Degree))
+                    else:
+                        number = float(element)
+                    Vector1.append(number)
 
                 #& Input Matrix 2 elements
                 print("\nEnter Matrix 2 elements:")
                 for i in range(rows2 * cols2):
-                    Vector2.append(int(input(f"Element {i+1}: ")))
+                    element = (input(f"Element {i+1}: "))
+                    if (element == "cos"):
+                        Degree = int(input("What is the degree: ")) 
+                        number = cos(radians(Degree))
+                    elif(element == "sin"):
+                        Degree = int(input("What is the degree: "))
+                        number = sin(radians(Degree))
+                    elif(element == "-sin"):
+                        Degree = int(input("What is the degree: "))
+                        number = -sin(radians(Degree))
+                    else:
+                        number = float(element)
+                    Vector2.append(number)
 
                 #& Make the vectors into [[1,2,3], [4,5,6]]
                 ArrayMatrix1 = make_vector_into_ArrayMatrix(Vector1, rows1, cols1)
@@ -453,8 +474,8 @@ class Transformation():
 
                 if HowMany == 1:
                     #& Get the 2 formulas
-                    Factor1 = int(input("Whats first?\n1. Rotate\n2. Skew\n3. Project\n4. Reflect\n"))
-                    Factor2 = int(input("Whats second?\n1. Rotate\n2. Skew\n3. Project\n4. Reflect\n"))
+                    Factor1 = int(input("Whats first?\n1. Rotate\n2. Skew\n3. Project\n4. Reflect\n5. Scale\n"))
+                    Factor2 = int(input("Whats second?\n1. Rotate\n2. Skew\n3. Project\n4. Reflect\n5. Scale\n"))
 
                     Formula1 = get_formula(Factor2, MatrixSize)
                     Formula2 = get_formula(Factor1, MatrixSize)
@@ -477,6 +498,7 @@ class Transformation():
 
                     #& Combine the 2 functions together
                     Updated_Formula = mutiply_matrix.multiply_two_matrix(Formula1, Formula2)
+                    print(f"\nMultiplied Formula ({Formula1} * {Formula2}): ", Updated_Formula)
 
                     #& Multiply the combined functions with the Orginal Vector
                     Final_Answer = mutiply_matrix.multiply_two_matrix(Updated_Formula, ArrayMatrix)
@@ -487,9 +509,9 @@ class Transformation():
                 else:
 
                     #&Get the formulas
-                    Factor1 = int(input("Whats first?\n1. Rotate\n2. Skew\n3. Project\n4. Reflect\n"))
-                    Factor2 = int(input("Whats second?\n1. Rotate\n2. Skew\n3. Project\n4. Reflect\n"))
-                    Factor3 = int(input("Whats second?\n1. Rotate\n2. Skew\n3. Project\n4. Reflect\n"))
+                    Factor1 = int(input("Whats first?\n1. Rotate\n2. Skew\n3. Project\n4. Reflect\n5. Scale\n"))
+                    Factor2 = int(input("Whats second?\n1. Rotate\n2. Skew\n3. Project\n4. Reflect\n5. Scale\n"))
+                    Factor3 = int(input("Whats second?\n1. Rotate\n2. Skew\n3. Project\n4. Reflect\n5. Scale\n"))
 
                     Formula1 = get_formula(Factor3, MatrixSize)
                     Formula2 = get_formula(Factor2, MatrixSize)
@@ -514,6 +536,9 @@ class Transformation():
                     #& Multiply the funcitions together
                     Updated_Formula = mutiply_matrix.multiply_two_matrix(Formula1, Formula2)
                     Updated_Formula2 = mutiply_matrix.multiply_two_matrix(Updated_Formula, Formula3)
+
+                    print(f"\nMultiplied Formula Part 1 ({Formula1} * {Formula2}): ", Updated_Formula)
+                    print(f"\nMultiplied Formula Part 2 ({Updated_Formula} * {Formula2}): ", Updated_Formula2)
 
                     #&Multiply final funtion with org vector
                     Final_Answer = mutiply_matrix.multiply_two_matrix(Updated_Formula2, ArrayMatrix)
@@ -594,20 +619,48 @@ def get_formula(Choice, Size):
                 return orthographic_projection.get_2x2_Reflection_vertical()
         #& 3x3
         else:
-            print("No reflection formula?")
-            exit()
+            return orthographic_projection.threex3_reflection_formula()
+    #& Scale
+    elif(Choice == 5):
+
+        ScaleFactor = int(input("\nWhat is the scale factor?: "))
+
+        if(Size == 1):
+            return scale_matrix.get_2d_Scale(ScaleFactor)
+        if(Size == 2):
+            return scale_matrix.get_3d_Scale(ScaleFactor)
 
 
-def clean_rotation_matrix(matrix):
-    #&Somtimes python gives you 1.2246467991473532e-16 for a floting point error so this just goes through the matrix and replaces that with 0
-    MatrixIndex = 0
-    VectorIndex = 0
-    for vector in matrix:
-        for element in vector:
-            if abs(element) < 1e-10:
-                matrix[MatrixIndex][VectorIndex] = 0
-            VectorIndex += 1
-        MatrixIndex += 1
+    def clean_rotation_matrix(matrix):
+        #&Somtimes python gives you 1.2246467991473532e-16 for a floting point error so this just goes through the matrix and replaces that with 0
+        MatrixIndex = 0
         VectorIndex = 0
-    return matrix
+        for vector in matrix:
+            for element in vector:
+                if abs(element) < 1e-10:
+                    matrix[MatrixIndex][VectorIndex] = 0
+                VectorIndex += 1
+            MatrixIndex += 1
+            VectorIndex = 0
+        return matrix
 
+class EigenThings:
+    def run():
+        choice = int(input("What do you want to do?\n1. Get EigenVectors and Eigenvalues\n"))
+
+        match choice:
+            case 1:
+                choice2 = int(input("What size matrix?\n1. 2x2\n"))
+                match choice2:
+                    case 1:
+                        a = int(input("What is the first value?: "))
+                        b = int(input("What is the second value?: "))
+                        c = int(input("What is the third value?: "))
+                        d = int(input("What is the fourth value?: "))
+
+                        scale = int(input("Whas there a scale factor (lambda)?\n1. Yes\n2. No\n"))
+
+                        if(scale == 1):
+                            sclaeFactor = int(input("What is the scale value?: "))
+                        else:
+                            eigenthings.get_2x2_eigenvalues_and_eigenvectors([[a, b], [c, d]], 0)

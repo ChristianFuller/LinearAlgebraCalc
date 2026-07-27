@@ -103,6 +103,27 @@ def construct_3x3_reflection(x,y,z):
     [round(-(2 * (x * z)), 3), round(-(2 * (y * z)), 3), round(1 - (2 * (z * z)), 3)]
 ]
 
+def threex3_reflection_formula():
+    choice = int(input("What axis do you want to reflect along by: \n1. X\n2. Y\n3. Z\n"))
+    if choice == 1:
+        return [
+            [-1,0,0],
+            [0, 1, 0],
+            [0, 0, 1]
+        ]
+    elif choice == 2:
+        return [
+            [1,0,0],
+            [0, -1, 0],
+            [0, 0, 1]
+        ]
+    elif choice == 3:
+        return [
+            [1,0,0],
+            [0, 1, 0],
+            [0, 0, -1]
+        ]
+
 
 def normalize(x, y, z=None):
     

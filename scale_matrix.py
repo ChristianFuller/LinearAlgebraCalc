@@ -3,7 +3,6 @@
 def scale(Vector, ScaleNumber, HowManyRowsorColumns):
 
     RotatedElements = []
-    ArrayOfTransformedVectors = []
     print("------- Scale -------")
 
     # 1 2 3 4 
@@ -34,3 +33,9 @@ def scale(Vector, ScaleNumber, HowManyRowsorColumns):
             RotatedElements.append(element)
         vectorIndex += 1
     return RotatedElements
+
+def get_2d_Scale(k):
+    return [[k,0], [0,k]]
+
+def get_3d_Scale(k):
+    return [[k,0,0], [0,k,0], [0,0,k]]
